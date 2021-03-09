@@ -1,0 +1,4 @@
+plugins:
+  discord_rolesync_enabled:
+    default: true
+    client: true
