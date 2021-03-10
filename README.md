@@ -6,7 +6,7 @@ DiscordRolesync is a plugin for ...
 
 Follow [Install a Plugin](https://meta.discourse.org/t/install-a-plugin/19157)
 how-to from the official Discourse Meta, using `git clone https://github.com/spirobel/discord-rolesync.git`
-as the plugin command. You need to create a personal access token according to: https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token (with repo rights) and attach it to the git clone link as described int the "install a plugin" thread.
+as the plugin command. You need to create a personal access token according to: https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token (with repo rights) and attach it to the git clone link as described int the "install a plugin" thread. If you need pictures for the next two steps look at the Getting Started section of this tutorial https://www.howtogeek.com/364225/how-to-make-your-own-discord-bot/
 
 ### setup discord login
 
@@ -27,4 +27,6 @@ go to https://discord.com/developers/applications create a bot and copy the acce
 
 ## Usage
 
-## Feedback
+go to the the group that you would like to sync with your discord role and attach the discord role id you want to sync it with. If you don't know how to find the id of your role, check out this tutorial: https://discordhelp.net/role-id
+
+Every time a user login happens he will be added / removed from the groups according to the discord roles he possesses. This affects only discourse groups that have a discord role id assigned.
