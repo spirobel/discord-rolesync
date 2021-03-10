@@ -36,6 +36,23 @@ after_initialize do
   unless SiteSetting.discord_rolyesync_token.empty?
     bot = Discordrb::Bot.new token: SiteSetting.discord_rolyesync_token
     bot.run background: true
-    puts bot.servers.keys[0]
+    discord_server =  bot.servers[bot.servers.keys.first]
+    DiscourseEvent.on(:user_logged_in) do |user|
+      uaa = UserAssociatedAccount.where(user:user, provider_name: "discord")
+      puts user
+      user_discord_roles = false
+      if uaa.any?
+        ua = uaa.first
+        #this is where we need to take the provider_uid and query the decord_server
+        #for the roles of this member
+        user_discord_roles = discord_server.member(ua.provider_uid.to_i).roles
+      end
+      puts user_discord_roles.inspect
+      #role.id
+      #next we need to add and remove him from the discourse groups with role ids
+
+  end
+
+
   end
 end
