@@ -10,7 +10,7 @@ as the plugin command. You need to create a personal access token according to: 
 
 ### setup discord login
 
-you also need to setup discord login in your disource instance. This requires putting your discordapp clientid and your client secret in the respective settings in the discourse admin panel. The discourse admin panel will provide you with a link on how to create your discordapp if you search for the discord settings.
+you also need to setup discord login in your disource instance. This requires putting your discordapp clientid and your client secret in the respective settings in the discourse admin panel. The discourse admin panel will provide you with a link on how to create your discordapp if you search for the discord settings. You can also follow this guide: https://meta.discourse.org/t/configuring-discord-login-for-discourse/127129
 
 ### authorize your bot to access your discord server
 
@@ -22,7 +22,7 @@ https://discordapp.com/oauth2/authorize?client_id=CLIENTID&scope=bot
 
 ### create discordbot and copy the token
 
-go to https://discord.com/developers/applications create a bot and copy the access token into the discord_bot_token setting of this plugin.
+go to https://discord.com/developers/applications create a bot and copy the access token into the discord_rolyesync_token setting of this plugin.
 
 
 ## Usage
@@ -30,3 +30,10 @@ go to https://discord.com/developers/applications create a bot and copy the acce
 go to the the group that you would like to sync with your discord role and attach the discord role id you want to sync it with. If you don't know how to find the id of your role, check out this tutorial: https://discordhelp.net/role-id
 
 Every time a user login happens he will be added / removed from the groups according to the discord roles he possesses. This affects only discourse groups that have a discord role id assigned.
+
+## Troubleshooting
+
+### wrong server
+
+Make sure your bot is only connected to one (your) discord server. On discourse plugin initialization the bot will be created and check which discord server it is connected to.
+This server will later be used to query which roles its members have when they login to your discourse.

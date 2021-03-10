@@ -2,3 +2,4 @@ plugins:
   discord_rolesync_enabled:
     default: true
     client: true
+  discord_rolyesync_token: ''
