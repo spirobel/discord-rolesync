@@ -37,3 +37,16 @@ Every time a user login happens he will be added / removed from the groups accor
 
 Make sure your bot is only connected to one (your) discord server. On discourse plugin initialization the bot will be created and check which discord server it is connected to.
 This server will later be used to query which roles its members have when they login to your discourse.
+
+### user lost access after role id assigned to group
+
+if you assign a role id to a group you decide to manage access to this group through discord. So if a user wants to stay in this group he needs to connect his discord account and relogin
+
+### have you tried logout and login again ?
+
+this plugin only acts on the discourse
+
+### non discord users are affected by this plugin
+
+the reason why this plugin needs to act on all logins and not just the logins that happen through discord is this:
+suppose you have a paid group on discord. A user joins this group. logs into discourse with discord. disconnects his discord account in discourse. cancels his payment. now he his still part of the special discourse group and no one expects it because its expected that they are synced. the remedy to this is to create discourse groups that fit no other purpose than being synced to discord roles.
