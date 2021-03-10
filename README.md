@@ -1,6 +1,6 @@
 # DiscordRolesync
 
-DiscordRolesync is a plugin for ...
+DiscordRolesync is a plugin for syncing your discord roles with discourse groups.
 
 ## Installation
 
