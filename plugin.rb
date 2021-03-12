@@ -35,7 +35,10 @@ after_initialize do
   # https://github.com/discourse/discourse/blob/master/lib/plugin/instance.rb
   register_editable_group_custom_field(:discord_role_id)
   register_group_custom_field_type('discord_role_id', :integer)
-  
+  add_preloaded_group_custom_field("discord_role_id")
+  add_to_serializer(:group_show, :custom_fields, false) {
+    object.custom_fields
+  }
   unless SiteSetting.discord_rolyesync_token.empty?
 
     discord_server =  Discordrb::API::User.servers("Bot " + SiteSetting.discord_rolyesync_token)

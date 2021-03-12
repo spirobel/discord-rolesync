@@ -1,3 +1,5 @@
 en:
   js:
-    discord_rolesync:
+    groups:
+      discord_rolesync_discord_role_id: 'Discord role id'
+      discord_rolesync_discord_role_id_warning: 'warning: if you set this field, members without the discord role will be removed from this group.'
