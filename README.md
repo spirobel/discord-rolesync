@@ -44,9 +44,9 @@ if you assign a role id to a group you decide to manage access to this group thr
 
 ### have you tried logout and login again ?
 
-this plugin only acts on the discourse
+this plugin only acts on the discourse login. So if there are any issues a new session might help.
 
 ### non discord users are affected by this plugin
 
 the reason why this plugin needs to act on all logins and not just the logins that happen through discord is this:
-suppose you have a paid group on discord. A user joins this group. logs into discourse with discord. disconnects his discord account in discourse. cancels his payment. now he his still part of the special discourse group and no one expects it because its expected that they are synced. the remedy to this is to create discourse groups that fit no other purpose than being synced to discord roles.
+suppose you have a paid group on discord. A user joins this group. Logs into discourse with discord. disconnects his discord account in discourse. Cancels his payment. Now he is still part of the special discourse group and no one expects it because its expected that they are synced. the remedy to this is to create discourse groups that fit no other purpose than being synced to discord roles.
