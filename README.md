@@ -33,9 +33,9 @@ Every time a user login happens he will be added / removed from the groups accor
 
 ## Troubleshooting
 
-### wrong server
+### wrong server / more than one server
 
-Make sure your bot is only connected to one (your) discord server. On discourse plugin initialization the bot will be created and check which discord server it is connected to.
+Make sure your bot is only connected to one (your) discord server. On discourse plugin initialization the bot will be created and it checks which discord server it is connected to.
 This server will later be used to query which roles its members have when they login to your discourse.
 
 ### user lost access after role id assigned to group
