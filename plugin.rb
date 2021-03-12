@@ -33,10 +33,13 @@ load File.expand_path('lib/discord-rolesync/engine.rb', __dir__)
 
 after_initialize do
   # https://github.com/discourse/discourse/blob/master/lib/plugin/instance.rb
+  register_editable_group_custom_field(:discord_role_id)
+  register_group_custom_field_type('discord_role_id', :integer)
+  
   unless SiteSetting.discord_rolyesync_token.empty?
-    bot = Discordrb::Bot.new token: SiteSetting.discord_rolyesync_token
-    bot.run background: true
-    discord_server =  bot.servers[bot.servers.keys.first]
+
+    discord_server =  Discordrb::API::User.servers("Bot " + SiteSetting.discord_rolyesync_token)
+    discord_server_id = JSON.parse(discord_server)[0]["id"].to_i
     DiscourseEvent.on(:user_logged_in) do |user|
       uaa = UserAssociatedAccount.where(user:user, provider_name: "discord")
       puts user
@@ -45,7 +48,8 @@ after_initialize do
         ua = uaa.first
         #this is where we need to take the provider_uid and query the decord_server
         #for the roles of this member
-        user_discord_roles = discord_server.member(ua.provider_uid.to_i).roles
+        discord_member = Discordrb::API::Server.resolve_member("Bot " + SiteSetting.discord_rolyesync_token,discord_server_id,ua.provider_uid.to_i)
+        user_discord_roles = JSON.parse(discord_member)["roles"]
       end
       puts user_discord_roles.inspect
       #role.id
