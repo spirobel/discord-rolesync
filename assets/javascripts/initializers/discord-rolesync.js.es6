@@ -8,6 +8,14 @@ function initializeDiscordRolesync(api) {
       return r;
     }
   });
+  api.modifyClass('component:groups-form-profile-fields', {
+    init(){
+      this._super(...arguments);
+      if(!this.model.custom_fields){
+        this.model.custom_fields = {}
+      }
+    }
+  });
 }
 
 export default {
