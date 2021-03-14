@@ -30,7 +30,6 @@ enabled_site_setting :discord_rolesync_enabled
 PLUGIN_NAME ||= 'DiscordRolesync'
 
 load File.expand_path('lib/discord-rolesync/engine.rb', __dir__)
-
 after_initialize do
   # https://github.com/discourse/discourse/blob/master/lib/plugin/instance.rb
   register_editable_group_custom_field(:discord_role_id)
@@ -39,9 +38,14 @@ after_initialize do
   add_to_serializer(:group_show, :custom_fields, false) {
     object.custom_fields
   }
+  load File.expand_path('../jobs/sync_discord_roles.rb', __FILE__)
+  load File.expand_path('../lib/discord_bot.rb', __FILE__)
+
   puts GroupCustomField.where(name: "discord_role_id").where.not(value: "").inspect
   unless SiteSetting.discord_rolyesync_token.empty?
 
+    Jobs.enqueue(:sync_discord_roles, {})
+    =begin
     discord_server =  Discordrb::API::User.servers("Bot " + SiteSetting.discord_rolyesync_token)
     discord_server_id = JSON.parse(discord_server)[0]["id"].to_i
     DiscourseEvent.on(:user_logged_in) do |user|
@@ -75,5 +79,6 @@ after_initialize do
       }
 
     end
+    =end
   end
 end
