@@ -3,3 +3,6 @@ en:
     groups:
       discord_rolesync_discord_role_id: 'Discord role id'
       discord_rolesync_discord_role_id_warning: 'warning: if you set this field, members without the discord role will be removed from this group.'
+    sync_discord:
+      title: "Sync Discord Roles"
+      show: "Sync Discord Roles"

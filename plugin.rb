@@ -44,6 +44,11 @@ after_initialize do
   load File.expand_path('../lib/discord_bot.rb', __FILE__)
 
   puts GroupCustomField.where(name: "discord_role_id").where.not(value: "").inspect
+  add_admin_route 'sync_discord.title', 'sync-discord'
+
+Discourse::Application.routes.append do
+  get '/admin/plugins/sync-discord' => 'admin/plugins#index', constraints: StaffConstraint.new
+end
   unless SiteSetting.discord_rolyesync_token.empty?
 
     Jobs.enqueue(:start_discord_bot, {})
