@@ -45,40 +45,7 @@ after_initialize do
   unless SiteSetting.discord_rolyesync_token.empty?
 
     Jobs.enqueue(:sync_discord_roles, {})
-    =begin
-    discord_server =  Discordrb::API::User.servers("Bot " + SiteSetting.discord_rolyesync_token)
-    discord_server_id = JSON.parse(discord_server)[0]["id"].to_i
-    DiscourseEvent.on(:user_logged_in) do |user|
-      uaa = UserAssociatedAccount.where(user:user, provider_name: "discord")
-      puts user
-      user_discord_roles = []
-      if uaa.any?
-        ua = uaa.first
-        #this is where we need to take the provider_uid and query the discord_server
-        #for the roles of this member
-        discord_member = Discordrb::API::Server.resolve_member("Bot " + SiteSetting.discord_rolyesync_token,discord_server_id,ua.provider_uid.to_i)
-        user_discord_roles = JSON.parse(discord_member)["roles"]
-      end
-      puts user_discord_roles.inspect
-      # next we need to add and remove him from the discourse groups with role ids
-      # find all groups with discord_role_id name custom field that have value different
-      # from ""
-      # GroupCustomField
-      # id | group_id |      name       | value |
-      #  5 |       41 | discord_role_id |       |
-      # go over this list and check if value is part of user_discord_roles
-      # if yes make him member if no remove him Group.add Group.remove(user)
-      groups_with_discord_role_id = GroupCustomField.where(name: "discord_role_id").where.not(value: "")
-      groups_with_discord_role_id.each{ |gwdri|
-        g = Group.find(gwdri.group_id)
-        if user_discord_roles.include?(gwdri.value)
-          g.add(user)
-        else
-          g.remove(user)
-        end
-      }
 
-    end
-    =end
+
   end
 end
