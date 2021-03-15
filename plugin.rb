@@ -39,12 +39,14 @@ after_initialize do
     object.custom_fields
   }
   load File.expand_path('../jobs/sync_discord_roles.rb', __FILE__)
+  load File.expand_path('../jobs/start_discord_bot.rb', __FILE__)
+
   load File.expand_path('../lib/discord_bot.rb', __FILE__)
 
   puts GroupCustomField.where(name: "discord_role_id").where.not(value: "").inspect
   unless SiteSetting.discord_rolyesync_token.empty?
 
-    Jobs.enqueue(:sync_discord_roles, {})
+    Jobs.enqueue(:start_discord_bot, {})
 
 
   end
