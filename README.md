@@ -23,7 +23,7 @@ https://discordapp.com/oauth2/authorize?client_id=CLIENTID&scope=bot
 ### create discordbot and copy the token
 
 go to https://discord.com/developers/applications create a bot and copy the access token into the discord_rolyesync_token setting of this plugin.
-
+the bot needs to have intents enabled: [Screenshot-2021-03-16-Discord-Developer-Portal-API-Docs-for-Bots-and-Developers.png](https://postimg.cc/87BrjXV5)
 
 ## Usage
 
