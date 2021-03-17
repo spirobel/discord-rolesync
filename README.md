@@ -29,7 +29,7 @@ the bot needs to have intents enabled: [Screenshot-2021-03-16-Discord-Developer-
 
 go to the the group that you would like to sync with your discord role and attach the discord role id you want to sync it with. If you don't know how to find the id of your role, check out this tutorial: https://discordhelp.net/role-id
 
-Every time a user login happens he will be added / removed from the groups according to the discord roles he possesses. This affects only discourse groups that have a discord role id assigned.
+Every time a user has roles add / removed on discord, he will be added / removed from the discourse groups according to the discord roles he possesses. This affects only discourse groups that have a discord role id assigned.
 
 ## Troubleshooting
 
@@ -40,11 +40,7 @@ This server will later be used to query which roles its members have when they l
 
 ### user lost access after role id assigned to group
 
-if you assign a role id to a group you decide to manage access to this group through discord. So if a user wants to stay in this group he needs to connect his discord account and relogin
-
-### have you tried logout and login again ?
-
-this plugin only acts on the discourse login. So if there are any issues a new session might help.
+if you assign a role id to a group you decide to manage access to this group through discord. So if a user wants to stay in this group he needs to connect his discord account to discourse.
 
 ### non discord users are affected by this plugin
 
