@@ -7,5 +7,8 @@ module DiscordRolesync
       Jobs.enqueue(:sync_discord_roles, {})
       render_json_dump({ sucess: true })
     end
+    def botstats
+      render_json_dump({ botstats: "bla" })
+    end
   end
 end
