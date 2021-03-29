@@ -47,8 +47,5 @@ after_initialize do
   Discourse::Application.routes.append do
     get '/admin/plugins/sync-discord' => 'admin/plugins#index', constraints: StaffConstraint.new
   end
-
-  unless SiteSetting.discord_rolyesync_token.empty?
-    Jobs.enqueue(:start_discord_bot, {})
-  end
+  Jobs.enqueue(:start_discord_bot, {})
 end
