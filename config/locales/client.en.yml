@@ -6,3 +6,6 @@ en:
     sync_discord:
       title: "Sync Discord Roles"
       show: "Sync Discord Roles"
+      sync: "sync"
+      start: "start"
+      stop: "stop"

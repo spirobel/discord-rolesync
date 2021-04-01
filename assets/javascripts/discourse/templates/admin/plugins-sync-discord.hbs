@@ -1,5 +1,6 @@
-{{discord-bot-status}}
-
+{{discord-bot-status botstats=botstats}}
 <div class='buttons'>
-  {{d-button label="sync_discord.show" action="syncDiscord" }}
+  {{d-button label="sync_discord.sync" action="syncDiscord" disabled=syncDisabled}}
+  {{d-button label="sync_discord.start" action="startDiscord" }}
+  {{d-button label="sync_discord.stop" action="stopDiscord" }}
 </div>
