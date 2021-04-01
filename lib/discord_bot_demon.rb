@@ -13,6 +13,18 @@ class Demon::DiscordBot < ::Demon::Base
     false
   end
 
+  def bot_not_ready!
+    Discourse.redis.set("discord_bot:ready", 0)
+  end
+
+  def bot_ready!
+    Discourse.redis.set("discord_bot:ready", 1)
+  end
+
+  def bot_ready?
+    Discourse.redis.get("discord_bot:ready")
+  end
+
   def handle_interrups
     at_exit { @bot.stop unless @bot.nil? }
     trap('INT')  { shutdown }
@@ -51,13 +63,13 @@ class Demon::DiscordBot < ::Demon::Base
       #ready event
       @bot.ready {
         puts "ready"
-        @ready = true
+        bot_ready!
       }
 
       #disconnect event
       @bot.disconnected {
         puts "disconnected event"
-        @ready = false
+        bot_not_ready!
       }
   end
 
@@ -79,7 +91,7 @@ class Demon::DiscordBot < ::Demon::Base
   def stop_discord_bot
     return unless already_running
     "discord bot stoped!"
-    @ready = false
+    bot_not_ready!
     @bot.stop unless @bot.nil?
   end
 
@@ -88,14 +100,15 @@ class Demon::DiscordBot < ::Demon::Base
     handle_interrups
     @bot = nil
     @running = true
-    @ready = false
+    bot_not_ready!
     @sync_lock = Mutex.new
 
     while @running
       puts "discord bot is running"
-      puts @ready
-      start_discord_bot unless  SiteSetting.discord_rolesync_bot_off
-      stop_discord_bot if SiteSetting.discord_rolesync_bot_off
+      puts bot_ready?
+      start_discord_bot if  SiteSetting.discord_rolesync_bot_on
+      stop_discord_bot unless SiteSetting.discord_rolesync_bot_on
+      #TODO log ready and current action to redis
       sleep 1
     end
 

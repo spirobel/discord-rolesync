@@ -3,5 +3,5 @@ plugins:
     default: true
     client: true
   discord_rolesync_token: ' '
-  discord_rolesync_bot_off:
-    default: false
+  discord_rolesync_bot_on:
+    default: true

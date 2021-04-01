@@ -1,5 +1,5 @@
 en:
   site_settings:
     discord_rolesync_enabled: "Enable DiscordRolesync plugin"
-    discord_rolesync_bot_off: "Turn off the Discord Rolesync bot"
+    discord_rolesync_bot_on: "Turn on the Discord Rolesync bot"
     discord_rolesync_token: "Discord rolesync bot token"
