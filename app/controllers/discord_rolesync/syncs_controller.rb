@@ -4,12 +4,34 @@ module DiscordRolesync
     requires_login
     before_action :ensure_staff
     def sync
-      Jobs.enqueue(:sync_discord_roles, {})
+      bot_sync!
       render_json_dump({ sucess: true })
     end
+
+    def start
+      SiteSetting.set_and_log('discord_rolesync_bot_on', true)
+      render_json_dump({ sucess: true })
+    end
+
+    def stop
+      SiteSetting.set_and_log('discord_rolesync_bot_on', false)
+      render_json_dump({ sucess: true })
+    end
+
     def botstats
-      bot = DiscordBot.instance
-      render_json_dump({ botstats: bot.inspect })
+      #TODO get ready and current action from redis and query and display info about discord members with ar
+      render_json_dump({ botstats: bot_ready , online: "bla" })
+    end
+
+    private
+
+    def bot_ready
+      return "online" if Discourse.redis.get("discord_bot:ready") == "1"
+      return "offline"
+    end
+
+    def bot_sync!
+      Discourse.redis.set("discord_bot:sync", 1)
     end
   end
 end
