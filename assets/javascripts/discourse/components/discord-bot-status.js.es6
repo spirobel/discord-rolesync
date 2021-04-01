@@ -14,7 +14,7 @@ export default Ember.Component.extend({
    pollBotStats(){
      return later(this,function(){
        ajax('/discord-rolesync/botstats', { type: "GET" }).then(function(a){
-         console.log("botstats",a )
+         this.set("current_action", a.current_action)
          this.set("botstats",a.botstats)
          this.poller = this.pollBotStats();
        }.bind(this))

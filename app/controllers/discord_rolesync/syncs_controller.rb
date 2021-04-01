@@ -20,7 +20,7 @@ module DiscordRolesync
 
     def botstats
       #TODO get ready and current action from redis and query and display info about discord members with ar
-      render_json_dump({ botstats: bot_ready , online: "bla" })
+      render_json_dump({ botstats: bot_ready , current_action: Discourse.redis.get("discord_bot:current_action") })
     end
 
     private

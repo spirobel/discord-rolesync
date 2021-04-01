@@ -39,9 +39,7 @@ after_initialize do
     object.custom_fields
   }
 
-  load File.expand_path('../jobs/sync_discord_roles.rb', __FILE__)
   load File.expand_path('../lib/discord_bot_demon.rb', __FILE__)
-  load File.expand_path('../lib/discord_bot.rb', __FILE__)
 
   add_admin_route 'sync_discord.title', 'sync-discord'
   Discourse::Application.routes.append do
