@@ -9,19 +9,13 @@ export default Ember.Controller.extend({
   },
   actions: {
     syncDiscord() {
-        ajax('/discord-rolesync/sync', { type: "GET" }).then(function(a){
-          alert("Discord member sync started!")
-        })
+        ajax('/discord-rolesync/sync', { type: "GET" })
     },
     startDiscord() {
-        ajax('/discord-rolesync/start', { type: "GET" }).then(function(a){
-          alert("Discord bot is starting!")
-        })
+        ajax('/discord-rolesync/start', { type: "GET" })
     },
     stopDiscord() {
-        ajax('/discord-rolesync/stop', { type: "GET" }).then(function(a){
-          alert("Discord bot is stopping!")
-        })
+        ajax('/discord-rolesync/stop', { type: "GET" })
     }
   }
 });

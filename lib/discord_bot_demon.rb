@@ -143,17 +143,11 @@ class Demon::DiscordBot < ::Demon::Base
     @bot = nil
     @running = true
     bot_not_ready!
-    @sync_lock = Mutex.new
 
     while @running
-      puts "discord bot is running"
-      puts bot_ready?
-      puts "sync "
-      puts sync_command.inspect
       start_discord_bot if  SiteSetting.discord_rolesync_bot_on
       stop_discord_bot unless SiteSetting.discord_rolesync_bot_on
       sync_discord_roles unless sync_command.nil?
-      #TODO log current action to redis
       sleep 1
     end
 
